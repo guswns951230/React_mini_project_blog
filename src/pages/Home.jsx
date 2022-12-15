@@ -1,3 +1,5 @@
+import "../css/Home.css";
+
 import { useEffect, useMemo, useState } from "react";
 
 import Slider from "react-slick";
@@ -80,50 +82,46 @@ const Home = () => {
 
   return (
     <div>
-      {/* 현재 시간 출력 */}
-      <h1>{printClock()}</h1>
-      <h1>Home page</h1>
-
       {/* react-slick */}
       <div>
-        <h2> Single Item</h2>
         <Slider {...settings}>
           <div>
             {/* 
               slider는 내용이 커지면 다음 페이지로 넘어간다
               크기를 조절하여 사용
             */}
+            {/* 이미지 주소로 바로 접근할 수 없기 때문에 require로 접근 */}
             <img
               style={{ width: "100%" }}
               src={require(`../images/homepage1.jpg`)}
               alt=""
             />
           </div>
-          <div>
-            {/* map을 사용해 출력 - 배열 */}
-            {imageList.map((image) => (
-              <div>
-                <img
-                  style={{ width: "100%", height: "1000px" }}
-                  src={require(`../images/${image}`)}
-                  alt=""
-                />
-              </div>
-            ))}
-          </div>
-          <div>
-            <img
-              style={{ width: "100%" }}
-              src={require(`../images/homepage3.jpg`)}
-              alt=""
-            />
-          </div>
+
+          {/* map을 사용해 출력 - 배열 */}
+          {imageList.map((image) => (
+            <div>
+              <div
+                style={{
+                  width: "100%",
+                  height: "100vh",
+                  backgroundImage: "url(" + require("../images/" + image) + ")",
+                  backgroundSize: "cover",
+                }}
+              ></div>
+            </div>
+          ))}
         </Slider>
       </div>
+      <div className="Home_main">
+        {/* 현재 시간 출력 */}
+        <h1>{printClock()}</h1>
+        <h1>Home page</h1>
 
-      {/* useMemo 사용 시, return값이 변수 안에 들어간다. -> 변수 이름으로만 사용 */}
-      <p>{printWord.text}</p>
-      <p>{printWord.author}</p>
+        {/* useMemo 사용 시, return값이 변수 안에 들어간다. -> 변수 이름으로만 사용 */}
+        <p>{printWord.text}</p>
+        <p>{printWord.author}</p>
+      </div>
     </div>
   );
 };

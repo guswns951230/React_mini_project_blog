@@ -1,0 +1,13 @@
+.Home_main {
+  position: fixed;
+  width: 100%;
+  top: 30%;
+  text-align: center;
+}
+
+.Home_main h1 {
+  font-size: 3em;
+}
+.Home_main p {
+  font-family: "궁서";
+}
