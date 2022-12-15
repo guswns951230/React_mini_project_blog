@@ -1,5 +1,6 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 
 // Routes와 Route를 이용하여 화면 관리
 function App() {
@@ -7,7 +8,7 @@ function App() {
     <div>
       {/* 고정할 화면이 있다면 Routes의 바깥에 두거나, Layout 사용 */}
       <Routes>
-        <Route></Route>
+        <Route path="/" element={<Home />}></Route>
       </Routes>
     </div>
   );
