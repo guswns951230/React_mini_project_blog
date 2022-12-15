@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
+import Slider from "react-slick";
+
 const Home = () => {
   const [time, setTime] = useState(new Date());
 
@@ -57,11 +59,68 @@ const Home = () => {
     return words[randomNum];
   }, []);
 
+  // react-slick settings
+  // slick과 같은 라이브러리를 사용할 때, 관련 내용을 확인
+  const settings = {
+    // dots: true,
+    arrows: false,
+    infinite: true,
+    autoplay: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  // slick에 출력할 배경이미지 배열
+  const [imageList, setImageList] = useState([
+    "homepage1.jpg",
+    "homepage2.jpg",
+    "homepage3.jpg",
+  ]);
+
   return (
     <div>
       {/* 현재 시간 출력 */}
       <h1>{printClock()}</h1>
       <h1>Home page</h1>
+
+      {/* react-slick */}
+      <div>
+        <h2> Single Item</h2>
+        <Slider {...settings}>
+          <div>
+            {/* 
+              slider는 내용이 커지면 다음 페이지로 넘어간다
+              크기를 조절하여 사용
+            */}
+            <img
+              style={{ width: "100%" }}
+              src={require(`../images/homepage1.jpg`)}
+              alt=""
+            />
+          </div>
+          <div>
+            {/* map을 사용해 출력 - 배열 */}
+            {imageList.map((image) => (
+              <div>
+                <img
+                  style={{ width: "100%", height: "1000px" }}
+                  src={require(`../images/${image}`)}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
+          <div>
+            <img
+              style={{ width: "100%" }}
+              src={require(`../images/homepage3.jpg`)}
+              alt=""
+            />
+          </div>
+        </Slider>
+      </div>
+
       {/* useMemo 사용 시, return값이 변수 안에 들어간다. -> 변수 이름으로만 사용 */}
       <p>{printWord.text}</p>
       <p>{printWord.author}</p>
