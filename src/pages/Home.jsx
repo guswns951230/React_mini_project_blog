@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const Home = () => {
   const [time, setTime] = useState(new Date());
@@ -50,19 +50,21 @@ const Home = () => {
   // printWord가 return의 html 안에 있기 때문에 계속 실행
   // 함수를 고정할 수 있는 방법 : useCallback, useMemo
   // return값을 고정 : useMemo - return 값 고정
+  // useMemo 사용시, 변수 안에 들어가는 값 = return 값
 
-  const printWord = () => {
+  const printWord = useMemo(() => {
     const randomNum = Math.floor(Math.random() * words.length);
     return words[randomNum];
-  };
+  }, []);
 
   return (
     <div>
       {/* 현재 시간 출력 */}
       <h1>{printClock()}</h1>
       <h1>Home page</h1>
-      <p>{printWord().text}</p>
-      <p>{words[4].author}</p>
+      {/* useMemo 사용 시, return값이 변수 안에 들어간다. -> 변수 이름으로만 사용 */}
+      <p>{printWord.text}</p>
+      <p>{printWord.author}</p>
     </div>
   );
 };
