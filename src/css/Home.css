@@ -1,13 +1,47 @@
+@font-face {
+  font-family: "KyoboHandwriting2020A";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/KyoboHandwriting2020A.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* -------------------Home page---------------------- */
 .Home_main {
-  position: fixed;
   width: 100%;
-  top: 30%;
+  position: fixed;
+  top: 25%;
+  padding-bottom: 30px;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .Home_main h1 {
-  font-size: 3em;
+  font-size: 4em;
 }
-.Home_main p {
-  font-family: "궁서";
+.Home_main > p {
+  margin: 0;
+  font-size: 1.5em;
+  font-family: "KyoboHandwriting2020A";
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+/* p태그의 동위선택연산자, p태그 바로 뒤의 p태그를 선택한다*/
+.Home_main > p + p {
+  color: darkblue;
+}
+
+/* -------------------Nav bar---------------------- */
+.Home_Link {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  display: flex;
+  justify-content: right;
+  padding-top: 20px;
+}
+
+.Home_Link a {
+  text-decoration: none;
+  color: black;
+  margin: 0 10px;
 }

@@ -3,6 +3,7 @@ import "../css/Home.css";
 import { useEffect, useMemo, useState } from "react";
 
 import Slider from "react-slick";
+import HomeLink from "../components/HomeLink";
 
 const Home = () => {
   const [time, setTime] = useState(new Date());
@@ -85,18 +86,18 @@ const Home = () => {
       {/* react-slick */}
       <div>
         <Slider {...settings}>
-          <div>
-            {/* 
+          {/* 
               slider는 내용이 커지면 다음 페이지로 넘어간다
               크기를 조절하여 사용
             */}
-            {/* 이미지 주소로 바로 접근할 수 없기 때문에 require로 접근 */}
+          {/* 이미지 주소로 바로 접근할 수 없기 때문에 require로 접근 */}
+          {/* <div>
             <img
               style={{ width: "100%" }}
               src={require(`../images/homepage1.jpg`)}
               alt=""
             />
-          </div>
+          </div> */}
 
           {/* map을 사용해 출력 - 배열 */}
           {imageList.map((image) => (
@@ -121,6 +122,8 @@ const Home = () => {
         {/* useMemo 사용 시, return값이 변수 안에 들어간다. -> 변수 이름으로만 사용 */}
         <p>{printWord.text}</p>
         <p>{printWord.author}</p>
+
+        <HomeLink />
       </div>
     </div>
   );
