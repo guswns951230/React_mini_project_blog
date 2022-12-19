@@ -14,12 +14,24 @@ import { BrowserRouter } from "react-router-dom";
 // -> 전체 파일에 그 내용이 적용
 import "./database/firebase";
 
+// redux를 사용하기 위해 redux provider 추가
+import { Provider } from "react-redux";
+// createStore를 추가
+// ※redux toolkit 사용 권장
+import { createStore } from "redux";
+import rootReducer from "./modules";
+
+// createStore를 통해 store 생성
+const store = createStore(rootReducer);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -12,7 +13,12 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
+import { userLogin } from "../modules/currentUser";
+
 const LoginForm = () => {
+  // redux의 reducer를 사용하기 위한 dispatch
+  const dispatch = useDispatch();
+
   // page를 이동하기 위한 navigate
   const navigate = useNavigate();
 
@@ -29,6 +35,7 @@ const LoginForm = () => {
         // Signed in 회원가입 성공
         const user = userCredential.user;
         console.log(user);
+        dispatch(userLogin(user));
         navigate("/");
       })
       .catch((error) => {
@@ -51,15 +58,16 @@ const LoginForm = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+        dispatch(userLogin(user));
         navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.error(errorCode, errorMessage);
-        if (errorCode == "auth/wrong-password") {
+        if (errorCode === "auth/wrong-password") {
           alert("잘못된 비밀번호입니다.");
-        } else if (errorCode == "auth/user-not-found") {
+        } else if (errorCode === "auth/user-not-found") {
           alert("없는 e-mail입니다.");
         }
       });
@@ -86,6 +94,7 @@ const LoginForm = () => {
         // The signed-in user info.
         const user = result.user;
         console.log(user);
+        dispatch(userLogin(user));
         navigate("/");
       })
       .catch((error) => {

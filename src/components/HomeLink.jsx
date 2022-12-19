@@ -1,10 +1,15 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const HomeLink = () => {
-  const login = false;
+  // const login = false;
+
+  // redux의 state값을 가져와 확인
+  const user = useSelector((state) => state.currentUser);
+
   return (
     <div className="Home_Link">
-      {login ? (
+      {user ? (
         <div>
           {/*
             로그인 했을때 보이는 링크
