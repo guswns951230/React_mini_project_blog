@@ -1,7 +1,9 @@
+import "../css/loginForm.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+import { Container, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -111,37 +113,61 @@ const LoginForm = () => {
 
   return (
     <div>
-      <Form onSubmit={onSubmitLogin}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>E-mail</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
+      <Container>
+        <Row>
+          <Col>
+            <Button
+              variant="outline-primary"
+              className="create_button"
+              onClick={emailCreate}
+            >
+              Sign Up
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={1}></Col>
+          <Col xs={10}>
+            <Form onSubmit={onSubmitLogin}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>E-mail</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Log In
-        </Button>
-      </Form>
-      <Button onClick={emailCreate}>Sign Up</Button>
-      <Button onClick={googleLogin}>Google Log In</Button>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+              </Form.Group>
+              <Button
+                className="my_margin_auto"
+                variant="primary"
+                type="submit"
+              >
+                Log In
+              </Button>
+            </Form>
+
+            <Button variant="outline-danger" onClick={googleLogin}>
+              Google Log In
+            </Button>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
