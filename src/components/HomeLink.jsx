@@ -1,11 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
+import { userLogout } from "../modules/currentUser";
 
 const HomeLink = () => {
   // const login = false;
 
   // redux의 state값을 가져와 확인
   const user = useSelector((state) => state.currentUser);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="Home_Link">
@@ -19,7 +23,13 @@ const HomeLink = () => {
           <Link>방명록</Link>
           <Link>관리자페이지</Link>
           <Link>My Page</Link>
-          <Link>Log out</Link>
+          <Link
+            onClick={() => {
+              dispatch(userLogout());
+            }}
+          >
+            Log out
+          </Link>
         </div>
       ) : (
         <div>

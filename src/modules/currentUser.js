@@ -19,11 +19,15 @@ function currentUser(state = initialState, action) {
       // 그 값을 전부 넣어준다면, 받아온 값을 그대로 넣어주면 되지만
       // 필요한 것만 골라 넣어주는 것이 좋다
       return action.payload;
+    case "userLogout":
+      // logout했을때 그 값이 null 값으로 들어감
+      return null;
     default:
       return state;
   }
 }
 // action 함수
 export const userLogin = (user) => ({ type: "userLogin", payload: user });
+export const userLogout = () => ({ type: "userLogout" });
 
 export default currentUser;
