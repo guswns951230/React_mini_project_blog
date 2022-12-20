@@ -153,18 +153,17 @@ const LoginForm = () => {
                   }}
                 />
               </Form.Group>
-              <Button
-                className="my_margin_auto"
-                variant="primary"
-                type="submit"
-              >
-                Log In
-              </Button>
+              <div className="my_center">
+                <Button variant="primary" type="submit">
+                  Log In
+                </Button>
+                <hr />
+                <p className="hint_text">소셜아이디로 로그인</p>
+                <Button variant="outline-danger" onClick={googleLogin}>
+                  Google Log In
+                </Button>
+              </div>
             </Form>
-
-            <Button variant="outline-danger" onClick={googleLogin}>
-              Google Log In
-            </Button>
           </Col>
         </Row>
       </Container>

@@ -2,6 +2,7 @@
 import { combineReducers } from "redux";
 // redux module 연결
 import currentUser from "./currentUser";
+import guest from "./guest";
 
-const rootReducer = combineReducers({ currentUser });
+const rootReducer = combineReducers({ currentUser, guest });
 export default rootReducer;
