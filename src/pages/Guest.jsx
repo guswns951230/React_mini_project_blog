@@ -9,24 +9,35 @@ const Guest = () => {
   const guestList = useSelector((state) => state.guest);
   const dispatch = useDispatch();
 
-  const [name, setName] = useState("");
+  // email 정보를 들고 오기위해 redux의 currentUser 들고오기
+  const currentUser = useSelector((state) => state.currentUser);
+
+  const [name, setName] = useState(currentUser ? currentUser.email : "익명");
   const [text, setText] = useState("");
 
   return (
-    <div>
+    <div className="mx-5 mt-5">
       <h1>Guest Page</h1>
-      <h3>Write text</h3>
 
-      <FloatingLabel controlId="floatingInput" label="이름" className="mb-3">
-        <Form.Control
-          type="text"
-          value={name}
-          placeholder="name"
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-        />
-      </FloatingLabel>
+      {currentUser ? (
+        <p>{currentUser.email}</p>
+      ) : (
+        <FloatingLabel controlId="floatingInput" label="이름" className="mb-3">
+          <Form.Control
+            type="text"
+            value={name}
+            placeholder="name"
+            style={{
+              border: "none",
+              borderRadius: "0",
+              borderBottom: "1px solid lightgray",
+            }}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+        </FloatingLabel>
+      )}
 
       <FloatingLabel controlId="floatingTextarea2" label="작성할 내용">
         <Form.Control
@@ -50,7 +61,7 @@ const Guest = () => {
 
       <hr />
 
-      <h3>return text</h3>
+      <h3>댓글</h3>
 
       <Card style={{ width: "18rem" }}>
         <ListGroup variant="flush">
