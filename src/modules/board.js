@@ -8,6 +8,14 @@ const initialState = [
     view: 0,
     like: 1, // 좋아요를 누른 사람의 리스트
   },
+  {
+    boardId: 2,
+    userEmail: "guswns@naver.com",
+    title: "두 번째 게시글",
+    content: "문자열로 작성된 내용",
+    view: 0,
+    like: 1, // 좋아요를 누른 사람의 리스트
+  },
 ];
 
 // reducer
